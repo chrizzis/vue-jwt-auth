@@ -1,5 +1,13 @@
 <template>
   <v-container>
+    <v-card>
+      <v-card-subtitle>already have an account?</v-card-subtitle>
+      <v-card-actions>
+        <v-btn link to="/login">
+          <v-icon>mdi-login</v-icon>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
     <form>
       <v-text-field
         outlined

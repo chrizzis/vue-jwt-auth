@@ -6,6 +6,7 @@
       ></v-app-bar-nav-icon>
       <v-toolbar-title class="text-capitalize">{{ title }}</v-toolbar-title>
       <v-spacer></v-spacer>
+      <!-- TODO: TRADE THIS OUT WITH AVATAR THAT EXPOSES DROPDOWN (PROFILE/LOGOUT) ONCE LOGGED IN -->
       <v-btn link to="/login" icon>
         <v-icon>mdi-login</v-icon>
       </v-btn>
@@ -81,6 +82,15 @@ export default {
   computed: {
     title() {
       return this.$route.name || "Authorize";
+    },
+    // isAuthenticated() {
+    //   return this.$store.getters.isAuthenticated;
+    // },
+  },
+  watch: {
+    $route() {
+      // clear alert on location change
+      this.$store.dispatch("alert/clear");
     },
   },
 };
