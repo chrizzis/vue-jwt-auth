@@ -12,7 +12,10 @@ export default {
 
             userService.getAll()
                 .then(
-                    users => commit('GET_ALL_SUCCESS', users),
+                    users => {
+                        console.log(`users.module.actions.getAll.userService.getAll.users: ${JSON.stringify(users, null, 2)}`)
+                        commit('GET_ALL_SUCCESS', users)
+                    },
                     error => commit('GET_ALL_FAILURE', error)
                 );
         }

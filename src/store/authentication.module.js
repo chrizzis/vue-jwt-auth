@@ -31,9 +31,11 @@ export default {
                     );
             })
         },
-        logout({ commit }) {
+        logout({ dispatch, commit }) {
             authenticationService.logout();
             commit('LOGOUT');
+            // TODO: is this where i call
+            dispatch('resetState', null, { root: true });
         }
     },
     mutations: {
