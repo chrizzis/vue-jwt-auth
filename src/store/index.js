@@ -13,6 +13,7 @@ const initialState = {
 }
 
 export default new Vuex.Store({
+  // plugins: [createPersistedState({ paths: ['userPrefs', 'token', 'refreshToken'] })],
   state: { ...initialState },
   mutations: {
     RESET_STATE: (state) => {

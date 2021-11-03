@@ -133,9 +133,12 @@ export default {
       const { dispatch } = this.$store;
       if (username && password) {
         dispatch("authentication/login", { username, password })
+          // TODO: move redirect to router? or this will be duped in register component as well
           .then((user) => {
             if (user) {
-              if (user.role === Role.User) {
+              if (this.$route.query.redirect) {
+                this.$router.push(this.$route.query.redirect);
+              } else if (user.role === Role.User) {
                 this.$router.push("/user");
               } else if (user.role === Role.Admin) {
                 this.$router.push("/admin");

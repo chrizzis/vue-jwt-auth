@@ -10,6 +10,9 @@ Vue.config.productionTip = false
 // import { configureFakeBackend } from '@/proto';
 // configureFakeBackend();
 
+// TODO: login with popup and redirect
+// https://auth0.com/blog/beginner-vuejs-tutorial-with-user-login/#Require-Users-to-Sign-in-to-View-Events
+
 new Vue({
   router,
   store,

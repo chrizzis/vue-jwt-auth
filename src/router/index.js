@@ -59,9 +59,11 @@ router.beforeEach((to, from, next) => {
   const currentUser = JSON.parse(localStorage.getItem('user'));
 
   if (authorize) {
+    // TODO: login popup vs redirect to login
     if (!currentUser) {
       // not logged in so redirect to login page with the return url
-      return next({ path: '/login', query: { returnUrl: to.path } });
+      // return next({ path: '/login', query: { returnUrl: to.path } });
+      return next({ path: '/login', query: { redirect: to.path } });
     }
 
     // check if route is restricted by role
@@ -70,6 +72,9 @@ router.beforeEach((to, from, next) => {
       return next({ path: '/' });
     }
   }
+  // TODO: use case: user tries to view admin page, gets redirected to login page with admin as redirect after success, logs in as user, gets redirected to home page with router error
+  // error is 'expected'
+  // https://stackoverflow.com/questions/62223195/vue-router-uncaught-in-promise-error-redirected-from-login-to-via-a
 
   next();
 })

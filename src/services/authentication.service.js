@@ -25,6 +25,16 @@ function login(username, password) {
     })
         .then(handleResponse)
         .then(data => {
+            // TODO: DEF: ths standard: dont use user for auth - use token's user. will have to decode with public key
+            // https://stackoverflow.com/questions/51503024/how-does-server-return-jwt-token-to-the-client ->
+            // https://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html#ExAccTokResp
+            // const oauthGuideline = {
+            //     "access_token":"your.jwt.here",
+            //     "token_type":"JWT",
+            //     "expires_in":3600, // why this? expiration is in the jwt
+            //     "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
+            // }
+
             // eslint-disable-next-line
             const { user, token, refreshToken } = data
             console.log(`User.login.handleResponse success, data: ${data}`)

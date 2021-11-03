@@ -4,9 +4,8 @@ export function authHeader() {
     let token = JSON.parse(localStorage.getItem('token'));
     console.log(`authHeader user: ${user}, token: ${token}`)
 
-    // if (user && user.token) {
+    // TODO: just token after decode for user/role implemented
     if (user && token) {
-        // return { 'Authorization': 'Bearer ' + user.token };
         return { 'Authorization': 'Bearer ' + token };
     } else {
         return {};
