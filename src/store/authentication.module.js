@@ -12,6 +12,7 @@ export default {
     namespaced: true,
     state: initialState,
     actions: {
+        // async login({ dispatch, commit }, { username, password }) {
         login({ dispatch, commit }, { username, password }) {
             commit('LOGIN_REQUEST', { username });
             console.log(`auth.module.login`)
@@ -32,6 +33,19 @@ export default {
                         }
                     );
             })
+            // try {
+            //     const user = await authenticationService.login(username, password)
+            //     console.log(`auth.module.login.userService.login.then.user`)
+            //     commit('LOGIN_SUCCESS', user);
+            //     // resolve(user)
+            //     return user
+            // } catch (error) {
+            //     console.log(`auth.module.login.userService.login.then.error`)
+            //     commit('LOGIN_FAILURE', error);
+            //     dispatch('alert/error', error, { root: true });
+            //     // TODO: vuex action error handoer?
+            //     return error
+            // }
         },
         logout({ dispatch, commit }) {
             authenticationService.logout();

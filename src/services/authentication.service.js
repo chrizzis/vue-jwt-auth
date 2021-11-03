@@ -1,19 +1,28 @@
 import { handleResponse } from '@/helpers';
+// eslint-disable-next-line
+import axios from 'axios'
 
 export const authenticationService = {
     login,
     logout,
     // currentUser?
 };
+
+// eslint-disable-next-line
+// function fetchLogin(username, password) {
 function login(username, password) {
     console.log(`User.login, name: ${username}, password: ${password}`)
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    };
+    // const requestOptions = {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ username, password })
+    // };
     // return fetch(`${process.env.VUE_APP_API_URL}/users/authenticate`, requestOptions)
-    return fetch(`${process.env.VUE_APP_API_URL}/auth/login`, requestOptions)
+    // return fetch(`${process.env.VUE_APP_API_URL}/auth/login`, requestOptions)
+    return axios.post(`${process.env.VUE_APP_API_URL}/auth/login`, {
+        username,
+        password
+    })
         .then(handleResponse)
         .then(data => {
             // eslint-disable-next-line
