@@ -1,9 +1,11 @@
 import { authenticationService } from '@/services';
 
+// TODO: move all items stored in localStorage to vuex store once vuex-persistence implemented
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
     ? { status: { loggedIn: true }, user }
     : { status: {}, user: null };
+// TODO: use decoded user/role as sources of truth (not the returned user object)
 
 // export const authentication = {
 export default {
