@@ -12,7 +12,6 @@
       </li>
     </ul>
     <p>
-      <!-- TODO: this is not actually logging user out -->
       <router-link to="/login">Logout</router-link>
     </p>
   </div>

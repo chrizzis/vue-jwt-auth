@@ -71,5 +71,13 @@ export default {
             state.status = {};
             state.user = null;
         }
+    },
+    getters: {
+        // TODO: seems to be a race condition on logout
+        isAuthenticated: (state) => {
+            console.log(`auth.module.getters.isAuthenticated? ${state.status?.loggedIn ? true : false}`)
+            // return state.status?.loggedIn ? true : false
+            return state.status?.loggedIn
+        }
     }
 }

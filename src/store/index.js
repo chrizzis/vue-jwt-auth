@@ -10,6 +10,8 @@ const initialState = {
   authentication: { ...authentication.state },
   alert: { ...alert.state },
   users: { ...users.state },
+  modalVisible: false,
+  modalComponent: null,
 }
 
 export default new Vuex.Store({
@@ -20,15 +22,29 @@ export default new Vuex.Store({
       Object.keys(initialState).forEach(key => {
         console.log(`resetting state: ${key}: ${JSON.stringify(state[key])}`)
         console.log(`to: ${JSON.stringify(initialState[key])}`)
-        Object.assign(state[key], initialState[key])
+        if (initialState[key] !== null) {
+          Object.assign(state[key], initialState[key])
+        } else {
+          state[key] = null;
+        }
       })
-    }
+    },
+    SHOW_MODAL: (state, componentName) => {
+      state.modalVisible = true;
+      state.modalComponent = componentName;
+    },
+    HIDE_MODAL: (state) => {
+      console.log(`store.mutations.HIDE_MODAL`)
+      state.modalVisible = false;
+      // state.modalComponent = null;
+    },
   },
   actions: {
     resetState({ commit }) {
       commit('RESET_STATE')
-    }
+    },
   },
+  getters: {},
   modules: {
     authentication,
     alert,

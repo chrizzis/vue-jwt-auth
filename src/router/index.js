@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import { Role } from '@/helpers'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,12 @@ const routes = [
     meta: { authorize: [] }
   },
   {
+    path: '/moderator',
+    name: 'Moderator',
+    component: () => import(/* webpackChunkName: "moderator" */ '../views/Moderator.vue'),
+    meta: { authorize: [Role.Admin, Role.Moderator] }
+  },
+  {
     path: '/admin',
     name: 'Admin',
     component: () => import(/* webpackChunkName: "admin" */ '../views/Admin.vue'),
@@ -34,12 +41,12 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ `../views/Login.vue`)
+    component: () => import(/* webpackChunkName: "loginform" */ `../views/LoginForm.vue`)
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue')
+    component: () => import(/* webpackChunkName: "registerform" */ '../views/RegisterForm.vue')
   },
   // otherwise redirect to home
   { path: '*', redirect: '/' }
@@ -51,23 +58,42 @@ const router = new VueRouter({
   routes
 })
 
+// TODO: temp
+const noPopPaths = ['Login', 'Register']
+
 router.beforeEach((to, from, next) => {
   console.log('should this be beforeEach or beforeResolve?')
+
+  // TODO: temp to remove modal during route change (when modal already popped)
+  store.commit('HIDE_MODAL')
+
   // redirect to login page if not logged in and trying to access a restricted page
   const { authorize } = to.meta;
   // TODO: vuex-persistedstate
   const currentUser = JSON.parse(localStorage.getItem('user'));
 
   if (authorize) {
-    // TODO: login popup vs redirect to login
+    // if (!currentUser && noPopPaths.includes(from.name)) {
     if (!currentUser) {
-      // not logged in so redirect to login page with the return url
-      // return next({ path: '/login', query: { returnUrl: to.path } });
-      return next({ path: '/login', query: { redirect: to.path } });
+      if (!noPopPaths.includes(from.name)) {
+        // if !from.login|register, pop modal and stay on page
+        store.commit('SHOW_MODAL', 'ModalLoginRegister')
+        return next(from);
+      } else {
+        // if from.login|register, redirect to login, then try to redirect back on success
+        return next({ path: '/login', query: { redirect: to.path } });
+      }
     }
 
     // check if route is restricted by role
     if (authorize.length && !authorize.includes(currentUser.role)) {
+      // TODO: pop modal asking for permissions if non-admin route
+      // store.commit('SHOW_MODAL', 'ModalRequestAuth')
+      if (authorize.includes(Role.Moderator)) {
+        // TODO: this pops modal on login failure
+        store.commit('SHOW_MODAL', 'ModalRequestAuth')
+        return next(from);
+      }
       // role not authorised so redirect to home page
       return next({ path: '/' });
     }
@@ -76,7 +102,8 @@ router.beforeEach((to, from, next) => {
   // error is 'expected'
   // https://stackoverflow.com/questions/62223195/vue-router-uncaught-in-promise-error-redirected-from-login-to-via-a
 
-  next();
+  // next();
+  return next();
 })
 
 export default router

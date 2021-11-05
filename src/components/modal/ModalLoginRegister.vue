@@ -1,0 +1,35 @@
+<template>
+  <v-card>
+    <v-tabs centered icons-and-text>
+      <v-tabs-slider></v-tabs-slider>
+
+      <v-tab href="#login">
+        login
+        <v-icon>mdi-login</v-icon>
+      </v-tab>
+      <v-tab-item value="login">
+        <LoginForm />
+      </v-tab-item>
+
+      <v-tab href="#register">
+        register
+        <v-icon>mdi-account-plus</v-icon>
+      </v-tab>
+      <v-tab-item value="register">
+        <RegisterForm />
+      </v-tab-item>
+    </v-tabs>
+  </v-card>
+</template>
+
+<script>
+import LoginForm from "@/views/LoginForm.vue";
+import RegisterForm from "@/views/RegisterForm.vue";
+export default {
+  components: {
+    LoginForm,
+    RegisterForm,
+  },
+  data: () => ({}),
+};
+</script>
