@@ -6,7 +6,7 @@ import store from '@/store'
 
 Vue.use(VueRouter)
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: 'Home',
@@ -41,12 +41,12 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "loginform" */ `../views/LoginForm.vue`)
+    component: () => import(/* webpackChunkName: "LoginPage" */ `../views/LoginPage.vue`)
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "registerform" */ '../views/RegisterForm.vue')
+    component: () => import(/* webpackChunkName: "RegisterPage" */ '../views/RegisterPage.vue')
   },
   // otherwise redirect to home
   { path: '*', redirect: '/' }

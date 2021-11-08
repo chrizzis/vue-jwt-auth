@@ -2,8 +2,10 @@
 export default {
     namespaced: true,
     state: {
-        type: null,
-        message: null
+        // type: null,
+        // message: null
+        type: '',
+        message: ''
     },
     actions: {
         success({ commit }, message) {
@@ -26,8 +28,10 @@ export default {
             state.message = message;
         },
         clear(state) {
-            state.type = null;
-            state.message = null;
+            // state.type = null;
+            // state.message = null;
+            state.type = '';
+            state.message = '';
         }
     }
 }

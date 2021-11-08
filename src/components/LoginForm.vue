@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-alert v-if="alert.message" type="error">{{ alert.message }}</v-alert>
+    <!-- <v-form> -->
     <form>
       <v-text-field
         outlined
@@ -8,10 +9,12 @@
         :error-messages="usernameErrors"
         :counter="10"
         label="Name"
+        name="login-username"
         required
         @input="$v.username.$touch()"
         @blur="$v.username.$touch()"
-      ></v-text-field>
+        data-testid="login-username"
+      />
       <v-text-field
         outlined
         v-model="password"
@@ -20,7 +23,8 @@
         required
         @input="$v.username.$touch()"
         @blur="$v.username.$touch()"
-      ></v-text-field>
+        data-testid="login-password"
+      />
       <v-checkbox
         v-model="checkbox"
         label="Keep me logged in forever"
@@ -30,6 +34,7 @@
         @click="submit"
         :disabled="!canSubmit || loggingIn"
         :loading="loggingIn"
+        data-testid="login-submit"
       >
         submit
       </v-btn>

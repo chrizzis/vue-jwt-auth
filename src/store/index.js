@@ -11,10 +11,29 @@ const initialState = {
   alert: { ...alert.state },
   users: { ...users.state },
   modalVisible: false,
-  modalComponent: null,
+  modalComponent: '',
+  // modules: {
+  //   ...authentication,
+  //   ...alert,
+  //   ...users,
+  // }
+}
+
+// TODO: hopefully for testing - need to add modules..,.
+export function getDefaultStore(customStore = {}) {
+  return {
+    ...customStore,
+    state: { ...initialState },
+    modules: {
+      authentication,
+      alert,
+      users,
+    }
+  }
 }
 
 export default new Vuex.Store({
+  // export default new Vuex.Store(getDefaultStore({
   // plugins: [createPersistedState({ paths: ['userPrefs', 'token', 'refreshToken'] })],
   state: { ...initialState },
   mutations: {
@@ -22,11 +41,11 @@ export default new Vuex.Store({
       Object.keys(initialState).forEach(key => {
         console.log(`resetting state: ${key}: ${JSON.stringify(state[key])}`)
         console.log(`to: ${JSON.stringify(initialState[key])}`)
-        if (initialState[key] !== null) {
-          Object.assign(state[key], initialState[key])
-        } else {
-          state[key] = null;
-        }
+        // if (initialState[key] !== null) {
+        Object.assign(state[key], initialState[key])
+        // } else {
+        //   state[key] = null;
+        // }
       })
     },
     SHOW_MODAL: (state, componentName) => {
@@ -50,4 +69,5 @@ export default new Vuex.Store({
     alert,
     users
   }
+  // }))
 })

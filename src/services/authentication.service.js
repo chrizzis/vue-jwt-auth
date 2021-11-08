@@ -37,7 +37,7 @@ function login(username, password) {
 
             // eslint-disable-next-line
             const { user, token, refreshToken } = data
-            console.log(`User.login.handleResponse success, data: ${data}`)
+            console.log(`User.login.handleResponse success, data: ${JSON.stringify(data)}`)
             // login successful if there's a jwt token in the response
             if (token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes

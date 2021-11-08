@@ -8,7 +8,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <form>
+    <form data-testid="registration-form">
       <v-text-field
         outlined
         v-model="name"

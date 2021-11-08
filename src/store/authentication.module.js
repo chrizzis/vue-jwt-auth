@@ -4,7 +4,7 @@ import { authenticationService } from '@/services';
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
     ? { status: { loggedIn: true }, user }
-    : { status: {}, user: null };
+    : { status: {}, user: {} };
 // TODO: use decoded user/role as sources of truth (not the returned user object)
 
 // export const authentication = {
@@ -65,11 +65,13 @@ export default {
         },
         LOGIN_FAILURE(state) {
             state.status = {};
-            state.user = null;
+            // state.user = null;
+            state.user = {};
         },
         LOGOUT(state) {
             state.status = {};
-            state.user = null;
+            // state.user = null;
+            state.user = {};
         }
     },
     getters: {
