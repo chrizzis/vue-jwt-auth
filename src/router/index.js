@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
+import LoginPage from '@/views/LoginPage.vue'
+import RegisterPage from '@/views/RegisterPage.vue'
 import { Role } from '@/helpers'
 import store from '@/store'
 
@@ -41,12 +43,16 @@ export const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "LoginPage" */ `../views/LoginPage.vue`)
+    // TODO: this was causing import order warnings on e2e tests
+    // component: () => import(/* webpackChunkName: "login-page" */ `../views/LoginPage.vue`)
+    component: LoginPage
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "RegisterPage" */ '../views/RegisterPage.vue')
+    // TODO: this was causing import order warnings on e2e tests
+    // component: () => import(/* webpackChunkName: "register-page" */ '../views/RegisterPage.vue')
+    component: RegisterPage
   },
   // otherwise redirect to home
   { path: '*', redirect: '/' }

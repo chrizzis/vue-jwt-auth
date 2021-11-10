@@ -1,4 +1,5 @@
 // TODO: test store clear by logging with high auth, logout, then login with base auth - check that page has no previous data
+// TODO: test trying to access moderator, logging in as user, popping request permissions modal
 describe('Login and redirect flows', () => {
   // TODO: failure from root
   describe('Success from root', () => {

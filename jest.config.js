@@ -14,7 +14,8 @@ module.exports = {
   ],
   transformIgnorePatterns: ['/node_modules/(?!@babel)'],
   setupFilesAfterEnv: [
-    '@testing-library/jest-dom/extend-expect'
+    '@testing-library/jest-dom/extend-expect',
+    // '<rootDir>/tests/unit/setupAfterEnv.js'
   ]
 
 }

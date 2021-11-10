@@ -7,7 +7,7 @@
         login
         <v-icon>mdi-login</v-icon>
       </v-tab>
-      <v-tab-item value="login">
+      <v-tab-item value="login" data-testid="content-login-form">
         <LoginForm />
       </v-tab-item>
 
@@ -15,7 +15,7 @@
         register
         <v-icon>mdi-account-plus</v-icon>
       </v-tab>
-      <v-tab-item value="register">
+      <v-tab-item value="register" data-testid="content-register-form">
         <RegisterForm />
       </v-tab-item>
     </v-tabs>
