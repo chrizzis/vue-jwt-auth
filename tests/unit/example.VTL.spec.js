@@ -47,6 +47,7 @@ describe('Vuetify, Vuex, Vue-Router', () => {
         return this.$options._renderChildren
       }
     })
+    // const { getByRole, getByTestId, debug } = renderWithEcosystem(
     const { getByRole } = renderWithEcosystem(
       VuetifyDemoComponent,
       {
@@ -60,6 +61,10 @@ describe('Vuetify, Vuex, Vue-Router', () => {
         }
       }
     )
+
+    // null content
+    // debug()
+
     const loginContentId = 'content-login-form'
     const registerContentId = 'content-register-form'
 
@@ -73,6 +78,13 @@ describe('Vuetify, Vuex, Vue-Router', () => {
     await fireEvent.click(loginFormTabButton)
     // this is imperative to get transitions to work
     await Vue.nextTick()
+
+    // login content in DOM
+    // debug(getByTestId(loginContentId))
+    // Throws Error
+    // debug(getByTestId(registerContentId))
+    // logs entire component, don't use this way
+    // debug(screen.queryByTestId(registerContentId))
 
     expect(screen.queryByTestId(loginContentId)).toBeVisible()
     expect(screen.queryByTestId(registerContentId)).toBeNull()
