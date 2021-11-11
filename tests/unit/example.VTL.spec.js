@@ -4,13 +4,35 @@ import { renderWithEcosystem } from '../render'
 import VuetifyDemoComponent from '@/components/modal/ModalLoginRegister.vue'
 import Vue from 'vue'
 
-
 describe('Vuetify, Vuex, Vue-Router', () => {
+  // https://chris-washington-dev.medium.com/vue-testing-testing-router-hooks-with-jest-a541dba7cf3a
+  // import router, { routes } from '@/router';
+  // import someService from '@/services/some-service';
+  // //using jest to mock
+  // jest.mock('@/services/some-service');
+  //   describe('when router.beforeEach is called', () => {
+  //     it('then someService is called',  () => {
+  //         const to = jest.fn();
+  //         const from = jest.fn();
+  //         const next = jest.fn();
+  //         router.beforeHooks.forEach((hook) => {
+  //             hook(to, from, next);
+  //         });
+  //         expect(someService).toHaveBeenCalledWith(to, from, next);
+  //     });   
+  // });
 
+  // import { RouterLinkStub } from '@vue/test-utils';
+  // it('should stub router-link for app page', () => {
+  //   const { container } = renderWithEcosystem(AppComponent, {
+  //     stubs: {
+  //       RouterLink: RouterLinkStub
+  //     }
+  //   })
+  // })
 
   it('should set [data-app] attribute on outer most div', () => {
     const { container } = renderWithEcosystem(VuetifyDemoComponent)
-
     expect(container).toHaveAttribute('data-app', 'true')
   })
 
@@ -18,7 +40,6 @@ describe('Vuetify, Vuex, Vue-Router', () => {
     const { getByText } = renderWithEcosystem(VuetifyDemoComponent)
 
     await fireEvent.click(getByText('login'))
-
 
     // TODO: this is working but not formatted exactly
     console.log(prettyDOM(getByText('login')))

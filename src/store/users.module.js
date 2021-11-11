@@ -6,6 +6,7 @@ export default {
     state: {
         all: {}
     },
+    // TODO: once actions built up, move to api file
     actions: {
         getAll({ commit }) {
             commit('GET_ALL_REQUEST');

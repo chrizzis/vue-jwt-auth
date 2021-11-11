@@ -11,6 +11,7 @@ const initialState = user
 export default {
     namespaced: true,
     state: initialState,
+    // TODO: once actions built up, move to api file
     actions: {
         // async login({ dispatch, commit }, { username, password }) {
         login({ dispatch, commit }, { username, password }) {
