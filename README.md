@@ -20,5 +20,17 @@ yarn build
 yarn lint
 ```
 
+### Deploy to Github
+## config:
+- create `gh-pages` branch and set up page in GitHub
+- `deploy.sh` (remember to set correct master|main|gh-pages branches and repo)
+- `public/404.html`
+- `public/index.html`
+- `vue.config.js`:`publicPath` (set repo)
+- `package.json`:`yarn deploy`
+- `.env`:`APP_BASE_URL` - can be set to localhost to test localserver|remoteclient integration
+```
+yarn deploy
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

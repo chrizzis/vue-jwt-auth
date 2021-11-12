@@ -3,6 +3,7 @@ module.exports = {
     'vuetify'
   ],
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/catalog-ui-gh-pages-prototype/'
+    // ? '/<REPO>/' 
+    ? '/vue-jwt-auth/'
     : '/'
 }
