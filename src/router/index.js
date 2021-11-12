@@ -100,7 +100,7 @@ router.beforeEach((to, from, next) => {
         store.commit('SHOW_MODAL', 'ModalRequestAuth')
         return next(from);
       }
-      // role not authorised so redirect to home page
+      // role not authorised so redirect to home page - even if unauthorized user trying to access admin page
       return next({ path: '/' });
     }
   }

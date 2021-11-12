@@ -44,7 +44,7 @@
       <!-- TODO: TRADE THIS OUT WITH AVATAR THAT EXPOSES DROPDOWN (PROFILE/LOGOUT) ONCE LOGGED IN -->
       <v-btn
         v-if="isAuthenticated"
-        @click.stop="logout"
+        @click.stop="handleLogout"
         icon
         data-testid="logout-button"
       >
@@ -162,12 +162,11 @@ export default {
     }),
     ...mapActions("authentication", ["logout"]),
     ...mapActions("alert", ["clear"]),
-    logout() {
-      // TODO: redirect on logout
-      // TODO: i can also methods: { ...mapActions('authentication', ['logout']) }
-      // this.$store.dispatch("authentication/logout");
+    handleLogout() {
       this.logout();
-      this.$router.push("/");
+      this.$router.push("/").catch(() => {
+        /* catch router:Error:NavigationDuplicated when user logs out from '/' */
+      });
     },
   },
   watch: {
