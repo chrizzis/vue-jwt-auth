@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "lserve": "VUE_APP_API_URL=http://localhost:5000/api/v0 vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:server": "vue-cli-service build --dest ./node-jwt-auth/public",
+    "build:server": "BUILD_TO_SERVER=true vue-cli-service build --dest ../node-jwt-auth/public",
+    "build:sseed": "VUE_APP_API_URL=https://test-my-shiz.herokuapp.com/api/v0 BUILD_TO_SERVER=true vue-cli-service build --dest ../../seedRepos/node-express-pg-vue-seed/public",
+    "build:ls": "VUE_APP_API_URL=http://localhost:5000/api/v0 BUILD_TO_SERVER=true vue-cli-service build --dest ../node-jwt-auth/public",
+    "build:lseed": "VUE_APP_API_URL=http://localhost:5000/api/v0 BUILD_TO_SERVER=true vue-cli-service build --dest ../../seedRepos/node-express-pg-vue-seed/public",
     "test:unit": "vue-cli-service test:unit",
     "test:debug": "node --inspect-brk node_modules/.bin/vue-cli-service test:unit --no-cache --watch --runInBand",
     "test:e2e": "vue-cli-service test:e2e",

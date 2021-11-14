@@ -28,7 +28,7 @@ yarn lint
 - `public/index.html`
 - `vue.config.js`:`publicPath` (set repo)
 - `package.json`:`yarn deploy`
-- `.env`:`APP_BASE_URL` - can be set to localhost to test localserver|remoteclient integration
+- `.env`:`APP_BASE_URL` - TODO: (not implemented) can be set to localhost to test localserver|remoteclient integration
 ```
 yarn deploy
 ```
